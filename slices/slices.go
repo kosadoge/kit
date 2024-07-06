@@ -16,6 +16,7 @@ func Map[S ~[]E, E, T any](s S, f func(E) T) []T {
 }
 
 // Keep retains elements in the slice s that satisfy the predicate f.
+// If the input slice is nil, it returns nil.
 func Keep[S ~[]E, E any](s S, f func(E) bool) []E {
 	if s == nil {
 		return nil
@@ -32,6 +33,7 @@ func Keep[S ~[]E, E any](s S, f func(E) bool) []E {
 }
 
 // Discard removes elements in the slice s that satisfy the predicate f.
+// If the input slice is nil, it returns nil.
 func Discard[S ~[]E, E any](s S, f func(E) bool) []E {
 	if s == nil {
 		return nil
