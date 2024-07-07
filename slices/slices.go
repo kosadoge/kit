@@ -48,3 +48,24 @@ func Discard[S ~[]E, E any](s S, f func(E) bool) []E {
 
 	return result
 }
+
+// Unique returns a new slice with duplicate elements removed.
+// If the input slice is nil, it returns nil.
+func Unique[S ~[]E, E comparable](s S) []E {
+	if s == nil {
+		return nil
+	}
+
+	seen := make(map[E]struct{}, len(s))
+	result := make([]E, 0, len(s))
+
+	for i := range s {
+		if _, exists := seen[s[i]]; !exists {
+			seen[s[i]] = struct{}{}
+			result = append(result, s[i])
+		}
+
+	}
+
+	return result
+}

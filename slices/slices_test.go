@@ -40,3 +40,14 @@ func TestDiscard(t *testing.T) {
 
 	assert.Equal(t, expect, actual)
 }
+
+func TestUnique(t *testing.T) {
+	t.Parallel()
+
+	args := []string{"🍎", "🍌", "🍉", "🍏", "🍎", "🍎", "🍇", "🍉", "🍌"}
+
+	expect := []string{"🍎", "🍌", "🍉", "🍏", "🍇"}
+	actual := slices.Unique(args)
+
+	assert.Equal(t, expect, actual)
+}
