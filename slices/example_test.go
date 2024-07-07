@@ -65,3 +65,12 @@ func ExampleDiscard() {
 	// Output:
 	// []int{1, 3, 5}
 }
+
+func ExampleUnique() {
+	fruits := []string{"🍎", "🍌", "🍉", "🍏", "🍎", "🍎", "🍇", "🍉", "🍌", "🍏"}
+	types := slices.Unique(fruits)
+
+	fmt.Printf("%#v\n", types)
+	// Output:
+	// []string{"🍎", "🍌", "🍉", "🍏", "🍇"}
+}
