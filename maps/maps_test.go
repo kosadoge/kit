@@ -47,3 +47,23 @@ func TestValues(t *testing.T) {
 
 	assert.Equal(t, expect, actual)
 }
+
+func TestToSlice(t *testing.T) {
+	t.Parallel()
+
+	args := map[string]string{
+		"a": "apple",
+		"b": "banana",
+		"c": "cat",
+		"d": "dog",
+		"e": "egg",
+	}
+
+	expect := []string{"a-apple", "b-banana", "c-cat", "d-dog", "e-egg"}
+	actual := maps.ToSlice(args, func(k, v string) string { return k + "-" + v })
+
+	// Since Go maps do not guarantee order, we sort the result for comparison.
+	sort.Strings(actual)
+
+	assert.Equal(t, expect, actual)
+}

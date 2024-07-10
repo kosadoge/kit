@@ -29,3 +29,19 @@ func Values[M ~map[K]V, K comparable, V any](m M) []V {
 
 	return result
 }
+
+// ToSlice converts a map to a slice using a provided function.
+// The function f takes a key-value pair from the map and returns an element for the slice.
+// If the input map is nil, it returns nil.
+func ToSlice[S []E, M ~map[K]V, K comparable, V, E any](m M, f func(K, V) E) S {
+	if m == nil {
+		return nil
+	}
+
+	result := make([]E, 0, len(m))
+	for k, v := range m {
+		result = append(result, f(k, v))
+	}
+
+	return result
+}

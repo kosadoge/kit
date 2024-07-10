@@ -16,9 +16,11 @@ A replacement for the standard library `slices` package, with additional functio
 - Keep: Keeps elements in a slice where the function `f` returns true
 - Discard: Removes elements in a slice where the function `f` returns true
 - Unique: Removes duplicate elements in a slice
+- ToMap: Converts a slice to a map using the provided function `f`
 
 ### maps
 A replacement for the standard library `maps` package, with additional functions:
 
 - Keys: Extracts keys from a map and returns them as a slice
 - Values: Extracts values from a map and returns them as a slice
+- ToSlice: Converts a map to a slice using the provided function `f`

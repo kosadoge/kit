@@ -69,3 +69,20 @@ func Unique[S ~[]E, E comparable](s S) []E {
 
 	return result
 }
+
+// ToMap converts a slice to a map using a provided function.
+// The function f takes an element of the slice and returns a key-value pair.
+// If the input slice is nil, it returns nil.
+func ToMap[S ~[]E, M map[K]V, K comparable, V, E any](s S, f func(E) (K, V)) M {
+	if s == nil {
+		return nil
+	}
+
+	result := make(map[K]V, len(s))
+	for i := range s {
+		k, v := f(s[i])
+		result[k] = v
+	}
+
+	return result
+}

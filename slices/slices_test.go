@@ -51,3 +51,29 @@ func TestUnique(t *testing.T) {
 
 	assert.Equal(t, expect, actual)
 }
+
+func TestToMap(t *testing.T) {
+	t.Parallel()
+
+	type User struct {
+		ID   int
+		Name string
+	}
+
+	args := []User{
+		{ID: 1, Name: "alice"},
+		{ID: 2, Name: "bob"},
+		{ID: 3, Name: "charlie"},
+		{ID: 4, Name: "david"},
+	}
+
+	expect := map[int]string{
+		1: "alice",
+		2: "bob",
+		3: "charlie",
+		4: "david",
+	}
+	actual := slices.ToMap(args, func(u User) (int, string) { return u.ID, u.Name })
+
+	assert.Equal(t, expect, actual)
+}

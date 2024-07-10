@@ -74,3 +74,28 @@ func ExampleUnique() {
 	// Output:
 	// []string{"🍎", "🍌", "🍉", "🍏", "🍇"}
 }
+
+func ExampleToMap() {
+	type User struct {
+		ID   int
+		Name string
+	}
+
+	users := []User{
+		{ID: 1, Name: "alice"},
+		{ID: 2, Name: "bob"},
+		{ID: 3, Name: "charlie"},
+		{ID: 4, Name: "david"},
+	}
+	idToUser := slices.ToMap(users, func(u User) (int, User) { return u.ID, u })
+
+	fmt.Printf("%+v\n", idToUser[1])
+	fmt.Printf("%+v\n", idToUser[2])
+	fmt.Printf("%+v\n", idToUser[3])
+	fmt.Printf("%+v\n", idToUser[4])
+	// Output:
+	// {ID:1 Name:alice}
+	// {ID:2 Name:bob}
+	// {ID:3 Name:charlie}
+	// {ID:4 Name:david}
+}
