@@ -1,4 +1,6 @@
 # kit
+[![Go Reference](https://pkg.go.dev/badge/github.com/kosadoge/kit.svg)](https://pkg.go.dev/github.com/kosadoge/kit)
+
 A collection of utility functions that are frequently needed during development.
 
 ## Install
