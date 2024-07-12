@@ -6,7 +6,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func Equal(t *testing.T, expect any, actual any) {
+func Equal[TB testing.TB](t TB, expect any, actual any) {
 	t.Helper()
 
 	if diff := cmp.Diff(expect, actual); diff != "" {
