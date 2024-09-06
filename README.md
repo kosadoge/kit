@@ -20,9 +20,13 @@ A replacement for the standard library `slices` package, with additional functio
 - Unique: Removes duplicate elements in a slice
 - ToMap: Converts a slice to a map using the provided function `f`
 
+> Note: This package does not support Go 1.23's new functions: All, AppendSeq, Backward, Collect, Sorted, SortedFunc, SortedStableFunc, and Values.
+
 ### maps
 A replacement for the standard library `maps` package, with additional functions:
 
-- Keys: Extracts keys from a map and returns them as a slice
-- Values: Extracts values from a map and returns them as a slice
+- Keys: Extracts keys from a map and returns them as a slice (Note: differs from the Go 1.23 implementation.)
+- Values: Extracts values from a map and returns them as a slice (Note: differs from the Go 1.23 implementation.)
 - ToSlice: Converts a map to a slice using the provided function `f`
+
+> Note: This package does not support Go 1.23's new functions: All, Collect, and Insert.
