@@ -52,6 +52,17 @@ func TestUnique(t *testing.T) {
 	assert.Equal(t, expect, actual)
 }
 
+func TestChunk(t *testing.T) {
+	t.Parallel()
+
+	args := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+	expect := [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9}}
+	actual := slices.Chunk(args, 2)
+
+	assert.Equal(t, expect, actual)
+}
+
 func TestToMap(t *testing.T) {
 	t.Parallel()
 

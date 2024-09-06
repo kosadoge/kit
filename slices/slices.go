@@ -70,6 +70,37 @@ func Unique[S ~[]E, E comparable](s S) []E {
 	return result
 }
 
+// Chunk splits a slice into multiple slices of the specified size n.
+// If n is less than 1, it panics. The function returns a slice of slices,
+// where each inner slice contains up to n elements from the original slice.
+// If the original slice can't be evenly divided, the last chunk will contain the remaining elements.
+// If the input slice is nil, it returns nil.
+func Chunk[S ~[]E, E any](s S, n int) []S {
+	if n < 1 {
+		panic("cannot be less than 1")
+	}
+	if s == nil {
+		return nil
+	}
+
+	size := len(s) / n
+	if len(s)%n != 0 {
+		size++
+	}
+
+	result := make([]S, size)
+	for i := range s {
+		idx := i / n
+		if result[idx] == nil {
+			result[idx] = make(S, 0, n)
+		}
+
+		result[idx] = append(result[idx], s[i])
+	}
+
+	return result
+}
+
 // ToMap converts a slice to a map using a provided function.
 // The function f takes an element of the slice and returns a key-value pair.
 // If the input slice is nil, it returns nil.

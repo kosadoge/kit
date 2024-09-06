@@ -19,6 +19,7 @@ A replacement for the standard library `slices` package, with additional functio
 - Discard: Removes elements in a slice where the function `f` returns true
 - Unique: Removes duplicate elements in a slice
 - ToMap: Converts a slice to a map using the provided function `f`
+- Chunk: Splits a slice into chunks of size n (Note: differs from the Go 1.23 implementation)
 
 > Note: This package does not support Go 1.23's new functions: All, AppendSeq, Backward, Collect, Sorted, SortedFunc, SortedStableFunc, and Values.
 
