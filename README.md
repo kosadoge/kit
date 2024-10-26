@@ -11,17 +11,13 @@ $ go get github.com/kosadoge/kit@latest
 ## Usage
 `kit` is organized into different packages for various purposes.
 
-### slices
-A replacement for the standard library `slices` package, with additional functions:
+### collect
+A package offering functional-style operations on slices. It includes the following functions:
 
-- Map: Transforms elements in a slice according to the provided function `f`
-- Keep: Keeps elements in a slice where the function `f` returns true
-- Discard: Removes elements in a slice where the function `f` returns true
-- Unique: Removes duplicate elements in a slice
-- ToMap: Converts a slice to a map using the provided function `f`
-- Chunk: Splits a slice into chunks of size n (Note: differs from the Go 1.23 implementation)
-
-> Note: This package does not support Go 1.23's new functions: All, AppendSeq, Backward, Collect, Sorted, SortedFunc, SortedStableFunc, and Values.
+- **Map**: Transforms elements in a slice according to the provided function `f`.
+- **Keep**: Retains elements in a slice where the function `f` returns true.
+- **Discard**: Removes elements in a slice where the function `f` returns true.
+- **Unique**: Removes duplicate elements in a slice.
 
 ### maps
 A replacement for the standard library `maps` package, with additional functions:

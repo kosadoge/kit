@@ -1,15 +1,15 @@
-package slices_test
+package collect_test
 
 import (
 	"fmt"
 	"strconv"
 
-	"github.com/kosadoge/kit/slices"
+	"github.com/kosadoge/kit/collect"
 )
 
 func ExampleMap() {
 	nums := []float64{1.1, 2.2, 3.3, 4.4, 5.5}
-	strs := slices.Map(nums, func(n float64) string { return strconv.FormatFloat(n, 'f', -1, 64) })
+	strs := collect.Map(nums, func(n float64) string { return strconv.FormatFloat(n, 'f', -1, 64) })
 
 	fmt.Printf("%#v\n", strs)
 	// Output:
@@ -18,7 +18,7 @@ func ExampleMap() {
 
 func ExampleMap_reuseFunc() {
 	nums := []int{1, 2, 3, 4, 5}
-	strs := slices.Map(nums, strconv.Itoa)
+	strs := collect.Map(nums, strconv.Itoa)
 
 	fmt.Printf("%#v\n", strs)
 	// Output:
@@ -38,8 +38,8 @@ func ExampleMap_extractStructFields() {
 		{ID: 4, Value: "dog"},
 	}
 
-	ids := slices.Map(boxes, func(b Box) int64 { return b.ID })
-	values := slices.Map(boxes, func(b Box) string { return b.Value })
+	ids := collect.Map(boxes, func(b Box) int64 { return b.ID })
+	values := collect.Map(boxes, func(b Box) string { return b.Value })
 
 	fmt.Printf("%#v\n", ids)
 	fmt.Printf("%#v\n", values)
@@ -50,7 +50,7 @@ func ExampleMap_extractStructFields() {
 
 func ExampleKeep() {
 	nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	even := slices.Keep(nums, func(n int) bool { return n%2 == 0 })
+	even := collect.Keep(nums, func(n int) bool { return n%2 == 0 })
 
 	fmt.Printf("%#v\n", even)
 	// Output:
@@ -59,7 +59,7 @@ func ExampleKeep() {
 
 func ExampleDiscard() {
 	nums := []int{-5, -3, -1, 1, 3, 5}
-	positive := slices.Discard(nums, func(n int) bool { return n < 0 })
+	positive := collect.Discard(nums, func(n int) bool { return n < 0 })
 
 	fmt.Printf("%#v\n", positive)
 	// Output:
@@ -68,34 +68,9 @@ func ExampleDiscard() {
 
 func ExampleUnique() {
 	fruits := []string{"🍎", "🍌", "🍉", "🍏", "🍎", "🍎", "🍇", "🍉", "🍌", "🍏"}
-	types := slices.Unique(fruits)
+	types := collect.Unique(fruits)
 
 	fmt.Printf("%#v\n", types)
 	// Output:
 	// []string{"🍎", "🍌", "🍉", "🍏", "🍇"}
-}
-
-func ExampleToMap() {
-	type User struct {
-		ID   int
-		Name string
-	}
-
-	users := []User{
-		{ID: 1, Name: "alice"},
-		{ID: 2, Name: "bob"},
-		{ID: 3, Name: "charlie"},
-		{ID: 4, Name: "david"},
-	}
-	idToUser := slices.ToMap(users, func(u User) (int, User) { return u.ID, u })
-
-	fmt.Printf("%+v\n", idToUser[1])
-	fmt.Printf("%+v\n", idToUser[2])
-	fmt.Printf("%+v\n", idToUser[3])
-	fmt.Printf("%+v\n", idToUser[4])
-	// Output:
-	// {ID:1 Name:alice}
-	// {ID:2 Name:bob}
-	// {ID:3 Name:charlie}
-	// {ID:4 Name:david}
 }
